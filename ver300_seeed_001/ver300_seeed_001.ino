@@ -10,6 +10,7 @@
 #define PS_VCC    5
 #define WakePin  2
 #include <Adafruit_ADS1015.h>
+#include "kLogCollection.h"
 
 
 SoftwareSerial mySerial4(4, 3); // RX, TX
@@ -35,16 +36,7 @@ in--4
 TE_VCC    3
 */
 
-//***********************s*************Macro definition*****************
-#define SN_ADD1    (0x00)
-#define SN1        (0x00)
-#define SN_ADD2    (0x01)
-#define SN2        (0x0f)
-#define CLK_COUNT  (0x05)
-#define CLK_INI    (0x10)
-#define NOTE_FLAG  (0x15)
 
-#define SD_CHIP_SELECT      10
 
 // file system object
 SdFat sd;
