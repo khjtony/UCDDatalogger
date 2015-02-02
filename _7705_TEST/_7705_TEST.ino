@@ -1,0 +1,27 @@
+#include <AD770X.h>
+
+AD770X ad7706(5);
+double v;
+
+void setup()
+{
+  Serial.begin(9600);
+
+  ad7706.reset();
+  ad7706.init(AD770X::CHN_AIN1);  
+  ad7706.init(AD770X::CHN_AIN2);
+  ad7706.Hello();
+}
+
+void loop()
+{
+  v = ad7706.readADResult(AD770X::CHN_AIN1);
+  Serial.print(v);
+
+  v = ad7706.readADResult(AD770X::CHN_AIN2);
+  Serial.print(" : ");
+  Serial.println(v);
+  delay(1000);
+}
+
+

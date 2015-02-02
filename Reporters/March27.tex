@@ -1,0 +1,56 @@
+\documentclass[a4paper,12pt]{article}
+\title{Data Logger Report}
+\author{Tony Kang}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\newpage
+\section{summary}
+Now, we have two types of data loggers in testing. One is Arduino UNO with Data Logging shield made by Adafruit. Another one is Arduino Pro mini with some external modules. ''Bare Bone circuit'' is not in working now.
+\subsection{UNO with Data logging Shield}
+Till now, we have a full features data logger which is ''UNO with Data Logging shield''. 
+\begin{enumerate}
+\item Advantages:
+\begin{itemize}
+\item It is fast to develop.
+\item Because this logger is combination of pre-built components, it is more stable during test.
+\item It can simply mount most of the components on the shield.
+\end{itemize}
+\item Disadvantages
+\begin{itemize}
+\item It uses much power, because UNO consume much power and Real Time clock on the Data Logging Shield cannot be shutdown. This system consumes around 50mA during waking up and 30mA during sleeping.
+\item It has large size.
+\end{itemize}
+\item TO-DO:
+\begin{itemize}
+\item Conduct reliable test under different circumsphere, and enhance its robust.
+\end{itemize}
+\end{enumerate}
+However, generally speaking, this system is good during developing.
+
+\subsection{Pro Mini with external moduels}
+Till now, this data logger has full featured program, and its abilities recording 5TE data and battery voltage has been examined, but it has one more test about recording data from ADC circuit.
+\begin{enumerate}
+\item Advantages:
+\begin{itemize}
+\item It consumes less power. One is because that I can manually shutdown external modules including ADC circuit, sensors and Real Time Clock module, which consumes 4mA. 
+\item It has flexible physical size, which depends on how we finally put them together.
+\end{itemize}
+\item Disadvantages
+\begin{itemize}
+\item It need work when poring program from ''UNO+Shield'' to this system.
+\item It cost more time in debugging.
+\end{itemize}
+\item TO-DO:
+\begin{itemize}
+\item Debugging, making system more robust, and conduct reliable test.
+\end{itemize}
+\end{enumerate}
+\section{Schedule}
+\begin{enumerate}
+\item During spring break, finish of ''UNO with Shield'' and upload record.
+\item Before April.6, finish debugging of Pro Mini controller and begin robust test.
+\end{enumerate}
+\end{document}
