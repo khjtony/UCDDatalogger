@@ -54,7 +54,7 @@ void setup() {
   pinMode(dataLed,  OUTPUT);
   
   // start serial
-  Serial1.begin(115200);
+  Serial1.begin(19200);
   Serial.begin(115200);
   flashLed(statusLed, 3, 50);
   delay(10000);
@@ -69,7 +69,7 @@ void loop() {
     if (inByte=='\n'){
       Serial.println("");
     }
-    Serial.print((char)inByte);
+    Serial.print(inByte);
 //    if (inByte==0x7e){
 //      Serial.println("");
 //    }

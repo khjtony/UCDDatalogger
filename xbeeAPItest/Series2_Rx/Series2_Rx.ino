@@ -24,7 +24,7 @@ This example is for Series 2 XBee
 Receives a ZB RX packet and sets a PWM value based on packet data.
 Error led is flashed if an unexpected packet is received
 */
-
+char rxData[80];
 XBee xbee = XBee();
 XBeeResponse response = XBeeResponse();
 // create reusable response objects for responses we expect to handle 
@@ -55,7 +55,8 @@ void setup() {
   
   // start serial
   Serial.begin(115200);
-  xbee.begin(Serial);
+  Serial1.begin(19200);
+  xbee.begin(Serial1);
   
   flashLed(statusLed, 3, 50);
 }
@@ -82,7 +83,16 @@ void loop() {
             flashLed(errorLed, 2, 20);
         }
         // set dataLed PWM to value of the first byte in the data
-        analogWrite(dataLed, rx.getData(0));
+//        for (int i=0;i<rx.getDataLength();i++){
+//          if ((uint8_t)rx.getData(i)=='\n'){
+//            break;
+//          }
+//          rxData[i]=(uint8_t)rx.getData(i);
+//          Serial.print(rx.getData(i),HEX);
+//        }
+        Serial.println((char*)rx.getData());
+     
+       
       } else if (xbee.getResponse().getApiId() == MODEM_STATUS_RESPONSE) {
         xbee.getResponse().getModemStatusResponse(msr);
         // the local XBee sends this response on certain events, like association/dissociation
