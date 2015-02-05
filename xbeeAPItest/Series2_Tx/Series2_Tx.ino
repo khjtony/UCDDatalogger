@@ -18,11 +18,11 @@ This example is for Series 2 XBee
 XBee xbee = XBee();
 
 
-uint8_t payload[50];
+uint8_t payload[60];
 uint16_t dummyRead;
 
 // SH + SL Address of receiving XBee
-XBeeAddress64 addr64 = XBeeAddress64(0x00000000, 0x00000000);
+XBeeAddress64 addr64 = XBeeAddress64(0x0013A200, 0x40c84fc7);
 ZBTxRequest zbTx = ZBTxRequest(addr64, payload, sizeof(payload));
 ZBTxStatusResponse txStatus = ZBTxStatusResponse();
 
@@ -52,9 +52,14 @@ void sendFile(char* fname){
   int i=0;
   ifstream file(fname);
   while ((c = file.get()) >= 0) {
+    //payload[0]=(byte)c;
+   // xbee.send(zbTx);
+   // Serial.print(c);
     if (c=='\n'){
+      payload[i]=(uint8_t)'\0';
       xbee.send(zbTx);
       i=0;
+      
     }else{
       payload[i]=(uint8_t)c;
       i++;
@@ -66,9 +71,11 @@ void sendFile(char* fname){
 
 
 void loop() {  
-   sendFile("ADC_DATA.txt");  
+  sendFile("ADC_DATA.txt");  
+  sendFile("5TE_DATA.txt");  
+  sendFile("BAT_DATA.txt");  
 
   // break down 10-bit reading into two bytes and place in payloa
-  delay(200000);
+  delay(5000);
 }
 
