@@ -5,8 +5,15 @@
 #include <stdio.h>
 #include <Wire.h>
 #include <SoftwareSerial.h>
-#define WakePin  2
 #include "kLogCollection.h"
+
+#define WakePin  2
+#define SD_CHIP_SELECT      10
+#define SN_ADD1    (0x00)
+#define SN1        (0x00)
+#define SN_ADD2    (0x01)
+#define SN2        (0x0f)
+
 
 // file system object
 SdFat sd;
@@ -115,6 +122,9 @@ void loop(){
   delay(50);  //waiting for MCU stable
   rtc.clearINTStatus(); 
   nowTime = rtc.now(); 
+  if ((nowTime.hour() % 24) == ( SN1<<8 + SN2 ) % 24){
+    upload_log(nowTime);
+  }
   pressure_sensor.log(nowTime);
   temperature_sensor.log(nowTime);
   TE_sensor.log(nowTime);
