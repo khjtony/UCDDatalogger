@@ -1,0 +1,17 @@
+---------------------------------------------------------------------------
+NCDrill File Report For: KLogShield.PcbDoc   3/28/2015  1:07:23 AM
+---------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : KLogShield.TXT
+
+Tool         Hole Size           Hole Type     Hole Count Plated       Tool Travel
+---------------------------------------------------------------------------
+T1        28mil (0.7112mm)         Round          32               11.57 Inch (293.84 mm)
+T2        32mil (0.8128mm)         Round          4                0.50 Inch (12.68 mm)
+T3        40mil (1.016mm)          Round          74               13.64 Inch (346.40 mm)
+T4        140mil (3.556mm)         Round          4                5.09 Inch (129.25 mm)
+---------------------------------------------------------------------------
+Totals                                            114              30.79 Inch (782.18 mm)
+
+Total Processing Time (hh:mm:ss) : 00:00:00

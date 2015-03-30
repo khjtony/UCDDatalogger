@@ -1,0 +1,29 @@
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of Project [KLogShield.PrjPcb]
+   Generated File[KLogShield.GTL]
+   Generated File[KLogShield.GBL]
+   Generated File[KLogShield.GPB]
+   Generated File[KLogShield.GPT]
+   Generated File[KLogShield.GTO]
+   Generated File[KLogShield.GTP]
+   Generated File[KLogShield.GTS]
+   Generated File[KLogShield.GBS]
+   Generated File[KLogShield.GBP]
+   Generated File[KLogShield.GBO]
+   Generated File[KLogShield.GKO]
+   Generated File[KLogShield.GM1]
+   Generated File[KLogShield.GM6]
+   Generated File[KLogShield.GM16]
+   Generated File[KLogShield.GM27]
+   Generated File[KLogShield.GML]
+   Generated File[KLogShield.1]
+   Generated File[KLogShield.RUL]
+   Generated File[KLogShield.EXTREP]
+   Generated File[KLogShield.REP]
+
+
+Files Generated   : 20
+Documents Printed : 0
+
+Finished Output Generation At 1:35:55 AM On 3/28/2015
