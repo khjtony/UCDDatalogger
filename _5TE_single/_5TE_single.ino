@@ -27,12 +27,19 @@
  */
 #include <SoftwareSerial.h>
 #define TE_VCC 3
-SoftwareSerial mySerial6(6, 9); // RX, TX
+SoftwareSerial mySerial6(9, 4); // RX, TX
+int sel_A = 7;
+int sel_B = 8;
 
 void setup()  
 {
   pinMode(TE_VCC,OUTPUT);
-  analogWrite(TE_VCC,0);
+  pinMode(sel_A,OUTPUT);
+  pinMode(sel_B,OUTPUT);
+  pinMode(9,INPUT);
+  digitalWrite(sel_A,LOW);
+  digitalWrite(sel_B,LOW);
+  digitalWrite(TE_VCC,LOW);
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
@@ -45,7 +52,7 @@ void setup()
   // set the data rate for the SoftwareSerial port
   mySerial6.begin(1200);
 //  mySerial.println("Hello, world?");
-  pinMode(6,INPUT);
+  
 
 }
 /*
@@ -131,7 +138,7 @@ float TE_measure(byte* raw,int option){
 }
 void loop() // run over and over
 { 
-  Serial.print("Now #4:  ");
+  Serial.print("Now #6:  ");
   TE_Read(&mySerial6);  
   delay(3000);
 }
@@ -151,7 +158,7 @@ void TE_Read(SoftwareSerial* mySerial){
   byte raw[20];
   int mos=0;
   int i=0;
-  analogWrite(TE_VCC,255);
+  digitalWrite(TE_VCC,HIGH);
   delay(80);
   while (mySerial->available()){
     income=mySerial->read();
@@ -173,7 +180,7 @@ void TE_Read(SoftwareSerial* mySerial){
        Serial.print("-");
        Serial.print(TE_measure(raw,3));
        Serial.println("");
-       analogWrite(TE_VCC,0);
+       digitalWrite(TE_VCC,LOW);
        delay(500);
        return;}
     
