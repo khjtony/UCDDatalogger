@@ -26,13 +26,16 @@
  
  */
 #include <SoftwareSerial.h>
-#define TE_VCC 3
+#define TE_VCC 6
+#define TE_MUX A3
 SoftwareSerial mySerial6(6, 9); // RX, TX
 
 void setup()  
 {
   pinMode(TE_VCC,OUTPUT);
-  analogWrite(TE_VCC,0);
+  pinMode(TE_MUX,OUTPUT);
+  analogWrite(TE_MUX,0);
+  analogWrite(TE_VCC,255);
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
