@@ -37,8 +37,8 @@ void setup()
   pinMode(sel_A,OUTPUT);
   pinMode(sel_B,OUTPUT);
   pinMode(9,INPUT);
-  digitalWrite(sel_A,LOW);
-  digitalWrite(sel_B,LOW);
+  digitalWrite(sel_A,HIGH);
+  digitalWrite(sel_B,HIGH);
   digitalWrite(TE_VCC,LOW);
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
@@ -159,13 +159,12 @@ void TE_Read(SoftwareSerial* mySerial){
   int mos=0;
   int i=0;
   digitalWrite(TE_VCC,HIGH);
-  delay(80);
+  delay(200);
   while (mySerial->available()){
     income=mySerial->read();
     raw[i]=income;
     
     i++;
-    delay(20);
     //Serial.print(income);
    // if (income==0x0A || i==19){
    //   analogWrite(3,0);
@@ -185,7 +184,7 @@ void TE_Read(SoftwareSerial* mySerial){
        return;}
     
     }
-analogWrite(TE_VCC,0);
+digitalWrite(TE_VCC,LOW);
        delay(500);
        return;
   }
