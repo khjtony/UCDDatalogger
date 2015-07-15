@@ -428,7 +428,7 @@ void loop(){
 
   if (nowTime.hour()==12){    //newDay
     lastTime=nowTime;
-    Xbee_send();
+//    Xbee_send();
   }
 
 
