@@ -43,6 +43,10 @@
 \usepackage[toc,page]{appendix}
 \usepackage{graphicx}
 \usepackage{listings}
+\usepackage{framed}
+\usepackage{footmisc}
+\usepackage{amssymb}
+\usepackage{hyperref}
 \usepackage{cleveref}
 \usepackage{listings}
 \usepackage{listingsutf8}
@@ -163,21 +167,190 @@ Hengjiu \textsc{Kang}\\[3cm] % Your name
 \newpage
 \section{Hardware Design}
   \subsection{Absolut values}
-    \subsection{Electrical Systems}
-            \begin{figure}[ht]
-            \centering
-            \includegraphics[width=0.9\textwidth]{Stalker.jpg}
-            \caption{\label{fig:Seeeduino Stalker}Seeeduino Stalker v2.3}
-            \end{figure}
-    Arduino Based controller 
-    \subsection{Power distribution}
-    \subsection{RTC}
-    \subsection{$I^{2}C$}
-    \subsection{ADC}
-    \subsection{Read-Only Port}
+    \label{absValue}
+  \subsection{Electrical Systems}
+  This field data-logger is designed in stack strategy to reach more compact size and more flexible connectivity. On the bottom is the main controller, middle shield is functionality shield, which has all the functional peripheral circuits on it, including external high precision ADC chip, power regulation circuit and level shifting circuit. Also, it has a 20-pin header pins to connect to the top shield, connection shield. Connection shield bears all the terminal connectors and simple protection circuits.
 
+    \subsubsection{Controller board}
+    \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Stalker.jpg}
+    \caption{\label{fig:Seeeduino Stalker}Seeeduino Stalker v2.3}
+    \end{figure}
+  Arduino Based controller Seeeduino Stalker v2.3 has been used as main controller. This controller is fully compatible with Arduino structure, and also it is able to connect to external Li-ion battery and a solar panel. According to our test, in UC Davis campus area, sun light is able to keep data-logger always on. 
+
+    \subsubsection{Functionality board}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{func_board_top.jpg}
+    \caption{\label{fig:Func Board}Functionality Board Top view}
+    \end{figure}
+    Functionality board is consisted of five functional blocks.
+    \begin{enumerate}
+    \item $I^{2}C$ Level shifting blocks  \\
+      Because all the sensors are powered by 5V power source, so there is a 2-way level shifting circuit here to convert $I^{2}C$ connection. Refering to \hyperref[i2c Design]{\textbf{\textit{I2C Design}}} for more information.
+    \item Interface blocks\\
+      A 20-pin housing to connect to connection board.
+    \item MOIS blocks \\
+      MOIS refers to 'Moisture sensor'. Default moisture sensor this data-logger uses is 5TE moisture sensor from decagon company, which uses 1-wire communication protocal, and there is a MUX chip let the board read at most 4 5TE sensors. Refering to \hyperref[read-only Design]{\textbf{\textit{Read-only Port}}} for more information.
+    \item Power blocks  \\
+      Power block is circuit to convert battery voltage to 5V standard voltage powering all the devices. Refering to \hyperref[power block]{\textbf{\textit{On-board power}}} for more information.
+    \item LED blocks    \\
+      There are also five LEDs in this block for debugging purpose.
+    \end{enumerate}
+
+    \subsubsection{Connectivity board}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{con_board_top.jpg}
+    \caption{\label{fig:Con Board}Connectivity Board Top view}
+    \end{figure}
+
+    Connectivity board has almost the same dimension of the functionality board and controller board, which is good to fit in the box. In order to increase the reliability of connection, 350 series terminal connector from Phoenix was chosen to make the job done. All the connections are following the wire order :\\
+    \begin{itemize}
+    \item VCC
+    \item GND
+    \item connection 1 (SCL/ADC+)
+    \item connection 2 (SDA/ADC-)
+    \item etc..
+    \end{itemize}
+
+  
+  \subsection{Power}
+  \subsubsection{External power supply}
+    \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{battery_solar.jpg}
+    \caption{\label{fig:Battery_solar}Battery and solar panel}
+    \end{figure} 
+    There are two possible power source: Li-ion battery and solar panel. In order to get enough power from battery, battery is directly connected to the functionality board, and a bridge wire is use to connect functionality board and controller board. 
+    \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{power_bridge.png}
+    \caption{\label{fig:power_bridge}Power Bridge and coupling}
+    \end{figure} 
+
+ 
+
+
+
+  \subsubsection{On-board power}
+    \label{power block}
     
-           
+    \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{3v3power_circuit.png}
+    \caption{\label{fig:3v3power_circuit}On board power regulator}
+    \end{figure}  
+    Seeeduino Stalker v2.3 has regulator to regulate external power supply to 3.3V standard, and all GPIO output is in 3.3V standard. 
+
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{power_circuit.png}
+    \caption{\label{fig:power_circuit}On board power boost circuit}
+    \end{figure}
+    In order to power on 5V standard peripheral devices, there is voltage boost regulator on the functionality board to boost battery voltage to 5V standard. This power boost chip's SHUTDOWN pin is controlled\footnotemark by D5 pin on the controller board. \\
+    
+    \footnotetext{\textbf{$\bigstar$Known bug} Due to the design of voltage boost chip, when D5 pin is LOW, this boost circuit still gives out 3.2V output} 
+
+  
+  \subsection{RTC}
+    DS3231 chip is Extremely accurate $I^{2}C-intergrated$ RTC from Maximintegrated company. This data-logger has on-board DS3231 chip with backup button battery to keep timing, and wake up in period of time, which is excellent for extending battery life.  \\
+    According to the offical application document from Seeeduino Wiki page, using RTC to wake up controller and put it into sleep mode can dramatically lower the power comsumption.
+    \begin{framed}
+            \begin{itemize}
+            \item The current consumption at sleep mode is 95.82 uA at 3.3V (i.e 316.206 uW power consumption). Please note, that the SD Card VCC is still powered in this demo. 
+            \item The current consumption at active mode peak is 22.43 mA @ 3.3V (i.e 74.019 mW power consumption)
+            \end{itemize}
+    \end{framed}
+
+
+  \subsection{$I^{2}C$ Design}
+    \label{i2c Design}
+    $I^{2}C$ is important port in this data-logger, because devices inlcuding external ADC and precise temperature sensors are depending on $I^{2}C$ to send data to the controller. \\
+    
+    \subsubsection{$I^{2}C$ Port}
+    $I^{2}C$ Port on Seeeduino Stalker is signed to Analog pins area, a different from Arduino Uno.
+    
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{i2cPort.png}
+    \caption{\label{fig:i2c Port}$I^{2}C$ port position on the Controller board}
+    \end{figure}
+
+    \subsubsection{$I^{2}C$ Level shifting}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{i2clevelshift.png}
+    \caption{\label{fig:i2c Level shift}$I^{2}C$ Level Shift circuit}
+    \end{figure}
+    Because all the external devices are working under 5V standard, so there is 2-way $I^{2}C$ level shifting circuit\footnotemark on the functionality board to convert 5V to 3.3V, verse versa.
+
+    \footnotetext{Thanks to the application document \textit{Bi-directional level shifter for
+I2C-bus and other systems} from PHILIPS}
+
+    \subsection{Enhanced ADC}
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{adcPosition.png}
+    \caption{\label{fig:i2c adcPosition}ADS1115 chip position on the functionality board}
+    \end{figure}
+
+    In order to eliminate noise, ADC chips are located as close as possible to the center connector.
+
+    Two ADS1115 16-bit high precision ADC chips from TI are used on the functionality board. These ADC circuits use $I^{2}C$ protocal and give reliable rail-to-rail measuring ability to the data-logger. According to the design, 8 ADC ports are exposured to the outside world. User can either use them as 8 single-ended ADC inputs or 4 pair of differential ADC inputs.
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{adcSch.png}
+    \caption{\label{fig:i2c schematic}ADS1115 chip schematic}
+    \end{figure}
+
+    Two ADS1115 chips are configured with two $I^{2}C$ address. No.1 chip is 0x48, and No.2 chip is 0x49.
+    Refering to \hyperref[absValue]{\textbf{\textit{Absolute Value}}} for more information.
+
+
+
+  \subsection{Read-Only Port}
+    \label{read-only Design}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{mosPosition.png}
+    \caption{\label{fig:moisture sensor position}Read-Only port position on the board}
+    \end{figure}
+    Read Only port is implemented by a SoftSerial port on the controller and a 4-to-1 74x153 MUX chip with level shifter circuit, located on the side of functionality board.
+
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{mosSch.png}
+    \caption{\label{fig:moisture sensor schematic}Read-Only port schematic}
+    \end{figure}
+    The moisture sensor, Decagon 5TE sensor uses 1-wire communication protocal which is compatible to Serial/UART port, so controller is able to read up to four 5TE sensors or other read-only sensors. \\
+    MUX has two select pins, which are D7 and D8. The output pin of group 1 is D9(5V), which will be converted to 3.3V standard, and this MUX is always enabled. The second group of 4-to-1 MUX on this 74x153 chip is not used.
+
+
+
+
+  \subsection{Dimensions}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{box.jpg}
+    \caption{\label{fig:water-resistant box}Water-resistant box}
+    \end{figure}
+    All the parts, excluded connection wires can fit in a water-resistant box, which has dimension as 3.95in(100mm) X 2.68in(68mm) X 1.96in(50mm).
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{con_board_top.jpg}
+    \caption{\label{fig:Con Board}Connectivity Board Top view}
+    \end{figure}
+    All the parts, excluded connection wires can fit in a water-resistant box, which has dimension as 2.5in(63.5mm) X 2.1in(53.34mm) X 0.4in(10mm).
+
+  
+         
 
 \newpage
 \section{Software Design}
@@ -280,34 +453,8 @@ Special thanks to Bay Area Circuit
         \subsection{Applications}
             \label{source:applications}
             \subsubsection{Main on Beaglebone Black}
-                \lstinputlisting[language=C++]{src/IRAssemblyTest/main.cpp}
-            \subsubsection{IMU on Arduino}
-                \lstinputlisting[language=C++]{src/imu/kalmanSPI.ino}
-            \subsubsection{IMU on Beaglebone Black}
-                \lstinputlisting[language=C++]{src/arduinoConnector/arduinoConnector.cpp}
-                \lstinputlisting[language=C++]{src/arduinoConnector/arduinoConnector.h}
+                % \lstinputlisting[language=C++]{src/IRAssemblyTest/main.cpp}
 
-        \subsection{Libries}
-            \label{source:libs}
-            \subsubsection{Customized Libs}
-                \lstinputlisting[language=C++]{src/BlackServo/BlackServo.h}
-                \lstinputlisting[language=C++]{src/BlackStepper/BlackStepper.h}
-                \lstinputlisting[language=C++]{src/BlackStepper/DualStepperMotor.h}
-            \subsubsection{IR Camera Driver}
-                \lstinputlisting[language=C++]{src/PVision/BlobCompare.h}
-                \lstinputlisting[language=C++]{src/PVision/IR_target.h}
-                \lstinputlisting[language=C++]{src/PVision/IRRim.h}
-                \lstinputlisting[language=C++]{src/PVision/PCA9548A.h}
-                \lstinputlisting[language=C++]{src/PVision/PVision.h}
-                \lstinputlisting[language=C++]{src/PVision/proximityRing.h}
-                \lstinputlisting[language=C++]{src/PVision/vec.h}
-            \subsubsection{PID control}
-                \lstinputlisting[language=C++]{src/PID/PID.h}
-        \subsection{Device tree}
-            \label{source:overlays}
-            \lstinputlisting{src/overlay/bspm_P9_25_17-00A0.dts}
-            \lstinputlisting{src/overlay/bspwm_P9_29_11-00A0.dts}
-            \lstinputlisting{src/overlay/bspwm_P9_31_11-00A0.dts}
     \section{User Manual}
 \end{appendices}
 
