@@ -89,7 +89,7 @@ float _temp9808_read(int choice) {
   }
   float c = tempSensor.readTempC();
   float f = c * 9.0 / 5.0 + 32;
-  return f;
+  return c;
 }
 
 void noteDown_TEMP(){
@@ -160,7 +160,6 @@ int noteDown_ADC_cell(Adafruit_ADS1115* ads1115){
  
  
 int noteDown_ADC(){ 
-  digitalWrite(MOI_PWR,LOW);
 
   char fname[15];  
   snprintf(fname, sizeof(fname), "%02d%02d%02d_P.log",
@@ -180,7 +179,6 @@ int noteDown_ADC(){
   noteDown_ADC_cell(&ADS1115B);
   myFile.println("");
   myFile.close();
-  digitalWrite(MOI_PWR,LOW);
  return 0;
  
 }
@@ -237,7 +235,7 @@ float TE_measure(byte* raw,int option){
   return 0;
 }
 
-int noteDown_5TE_cell(unsigned char number){
+int noteDown_5TE_cell(int number){
   switch (number){
     case 1:
       digitalWrite(MUX_B,LOW);
@@ -269,10 +267,10 @@ int noteDown_5TE_cell(unsigned char number){
     raw[i]=income;
     i++;
     if (income==0x0A){ 
-      digitalWrite(PWR_BOOST,LOW);
       break;
-    }
-    
+    }else if(i==19){
+      break;
+    }    
   }
   digitalWrite(PWR_BOOST,LOW);
 
@@ -304,16 +302,16 @@ int noteDown_5TE(){
   
   noteDown_5TE_cell(1);
   myFile.print(" ");
-  delay(500);
+  delay(1000);
   noteDown_5TE_cell(2);
   myFile.print(" ");
-  delay(500);
+  delay(1000);
   noteDown_5TE_cell(3);
   myFile.print(" ");
-  delay(500);
+  delay(1000);
   noteDown_5TE_cell(4);
   myFile.print(" ");
-  delay(500);
+  delay(1000);
 
   myFile.println("");
   myFile.close();
@@ -403,7 +401,7 @@ void setup(){
   pinMode(WAKE_UP, INPUT);
   digitalWrite(WAKE_UP,HIGH);
   rtc.begin();
-  rtc.enableInterrupts(EveryMinute);
+  rtc.enableInterrupts(EveryHour);
   //SD card 
   pinMode(SD_CHIP_SELECT,OUTPUT);
   if (!sd.begin(SD_CHIP_SELECT, SPI_HALF_SPEED)) sd.initErrorHalt();
@@ -450,6 +448,6 @@ void loop(){
   noteDown_5TE();
 
   
-  delay(3000);
- // sleepNow(); 
+  //delay(3000);
+ sleepNow(); 
 }  
