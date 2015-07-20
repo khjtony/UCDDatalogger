@@ -1,10 +1,10 @@
 \select@language {english}
-\contentsline {section}{\numberline {1}Overview}{6}{section.1}
-\contentsline {section}{\numberline {2}Features}{6}{section.2}
-\contentsline {section}{\numberline {3}Hardware Design}{7}{section.3}
-\contentsline {subsection}{\numberline {3.1}Absolut values}{7}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Electrical Systems}{7}{subsection.3.2}
-\contentsline {subsubsection}{\numberline {3.2.1}Controller board}{7}{subsubsection.3.2.1}
+\contentsline {section}{\numberline {1}Overview}{5}{section.1}
+\contentsline {section}{\numberline {2}Features}{5}{section.2}
+\contentsline {section}{\numberline {3}Hardware Design}{6}{section.3}
+\contentsline {subsection}{\numberline {3.1}Absolut values}{6}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Electrical Systems}{6}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Controller board}{6}{subsubsection.3.2.1}
 \contentsline {subsubsection}{\numberline {3.2.2}Functionality board}{8}{subsubsection.3.2.2}
 \contentsline {subsubsection}{\numberline {3.2.3}Connectivity board}{10}{subsubsection.3.2.3}
 \contentsline {subsection}{\numberline {3.3}Power}{11}{subsection.3.3}
@@ -17,20 +17,15 @@
 \contentsline {subsection}{\numberline {3.6}Enhanced ADC}{16}{subsection.3.6}
 \contentsline {subsection}{\numberline {3.7}Read-Only Port}{18}{subsection.3.7}
 \contentsline {subsection}{\numberline {3.8}Dimensions}{20}{subsection.3.8}
-\contentsline {section}{\numberline {4}Software Design}{21}{section.4}
-\contentsline {subsection}{\numberline {4.1}Overall strucutre}{21}{subsection.4.1}
-\contentsline {section}{\numberline {5}Results}{21}{section.5}
-\contentsline {subsection}{\numberline {5.1}Design achivement}{21}{subsection.5.1}
-\contentsline {section}{\numberline {6}Future Work}{21}{section.6}
-\contentsline {section}{\numberline {7}Acknowledgements and References}{22}{section.7}
-\contentsline {section}{Appendices}{23}{section*.4}
-\contentsline {section}{\numberline {A}Mechanical Design}{23}{Appendix.a.A}
-\contentsline {subsection}{\numberline {A.1}Mechanical Design}{23}{subsection.a.A.1}
-\contentsline {section}{\numberline {B}PCB Design}{23}{Appendix.a.B}
-\contentsline {subsection}{\numberline {B.1}Shield}{23}{subsection.a.B.1}
-\contentsline {subsection}{\numberline {B.2}Ankle Band}{23}{subsection.a.B.2}
-\contentsline {section}{\numberline {C}BOM}{23}{Appendix.a.C}
-\contentsline {section}{\numberline {D}Source code}{23}{Appendix.a.D}
-\contentsline {subsection}{\numberline {D.1}Applications}{23}{subsection.a.D.1}
-\contentsline {subsubsection}{\numberline {D.1.1}Main on Beaglebone Black}{23}{subsubsection.a.D.1.1}
-\contentsline {section}{\numberline {E}User Manual}{23}{Appendix.a.E}
+\contentsline {section}{\numberline {4}Software Design}{22}{section.4}
+\contentsline {subsection}{\numberline {4.1}Overall strucutre}{22}{subsection.4.1}
+\contentsline {section}{\numberline {5}Future Work}{22}{section.5}
+\contentsline {subsection}{\numberline {5.1}Wireless}{22}{subsection.5.1}
+\contentsline {section}{Appendices}{23}{section*.3}
+\contentsline {section}{\numberline {A}PCB Design}{23}{Appendix.a.A}
+\contentsline {subsection}{\numberline {A.1}Functionality board}{23}{subsection.a.A.1}
+\contentsline {subsection}{\numberline {A.2}Connectivity board}{23}{subsection.a.A.2}
+\contentsline {section}{\numberline {B}BOM}{24}{Appendix.a.B}
+\contentsline {section}{\numberline {C}Source code}{24}{Appendix.a.C}
+\contentsline {subsection}{\numberline {C.1}Applications}{24}{subsection.a.C.1}
+\contentsline {subsubsection}{\numberline {C.1.1}Main on Beaglebone Black}{24}{subsubsection.a.C.1.1}

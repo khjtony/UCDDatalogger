@@ -18,18 +18,13 @@
 \BOOKMARK [2][-]{subsection.3.8}{Dimensions}{section.3}% 18
 \BOOKMARK [1][-]{section.4}{Software Design}{}% 19
 \BOOKMARK [2][-]{subsection.4.1}{Overall strucutre}{section.4}% 20
-\BOOKMARK [1][-]{section.5}{Results}{}% 21
-\BOOKMARK [2][-]{subsection.5.1}{Design achivement}{section.5}% 22
-\BOOKMARK [1][-]{section.6}{Future Work}{}% 23
-\BOOKMARK [1][-]{section.7}{Acknowledgements and References}{}% 24
-\BOOKMARK [1][-]{section*.4}{Appendices}{}% 25
-\BOOKMARK [1][-]{Appendix.a.A}{Mechanical Design}{}% 26
-\BOOKMARK [2][-]{subsection.a.A.1}{Mechanical Design}{Appendix.a.A}% 27
-\BOOKMARK [1][-]{Appendix.a.B}{PCB Design}{}% 28
-\BOOKMARK [2][-]{subsection.a.B.1}{Shield}{Appendix.a.B}% 29
-\BOOKMARK [2][-]{subsection.a.B.2}{Ankle Band}{Appendix.a.B}% 30
-\BOOKMARK [1][-]{Appendix.a.C}{BOM}{}% 31
-\BOOKMARK [1][-]{Appendix.a.D}{Source code}{}% 32
-\BOOKMARK [2][-]{subsection.a.D.1}{Applications}{Appendix.a.D}% 33
-\BOOKMARK [3][-]{subsubsection.a.D.1.1}{Main on Beaglebone Black}{subsection.a.D.1}% 34
-\BOOKMARK [1][-]{Appendix.a.E}{User Manual}{}% 35
+\BOOKMARK [1][-]{section.5}{Future Work}{}% 21
+\BOOKMARK [2][-]{subsection.5.1}{Wireless}{section.5}% 22
+\BOOKMARK [1][-]{section*.3}{Appendices}{}% 23
+\BOOKMARK [1][-]{Appendix.a.A}{PCB Design}{}% 24
+\BOOKMARK [2][-]{subsection.a.A.1}{Functionality board}{Appendix.a.A}% 25
+\BOOKMARK [2][-]{subsection.a.A.2}{Connectivity board}{Appendix.a.A}% 26
+\BOOKMARK [1][-]{Appendix.a.B}{BOM}{}% 27
+\BOOKMARK [1][-]{Appendix.a.C}{Source code}{}% 28
+\BOOKMARK [2][-]{subsection.a.C.1}{Applications}{Appendix.a.C}% 29
+\BOOKMARK [3][-]{subsubsection.a.C.1.1}{Main on Beaglebone Black}{subsection.a.C.1}% 30

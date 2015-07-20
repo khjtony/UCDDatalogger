@@ -168,6 +168,29 @@ Hengjiu \textsc{Kang}\\[3cm] % Your name
 \section{Hardware Design}
   \subsection{Absolut values}
     \label{absValue}
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|l|l|l|}
+Parameter               & Sym   & Min  & Typ          & Max & Unit & Conditions \\
+External Battery        & Vbat  & 3.2  & 3.8          & 4.2 & V    &            \\
+Digital Pin HIGH        & Vhigh & 3.3  & 3.3          &     & V    &            \\
+Digital Pin Low         & Vlow  & 0    & 0            & 0.2 & V    &            \\
+Voltage Boost Output    & 5V    & 5.0  & 5.2          & 5.3 & V    &            \\
+ADC Sample rate         & tADC  &      & 800          &     & sps  &            \\
+Boot time               & tBoot &      & 0.5          &     & s    &            \\
+5TE sensor cooling time &       &      & 2            &     & s    &            \\
+ADC minimum input       &       & -0.5 &              &     & V    &            \\
+ADC maximum input       &       &      &              & 5.5 & V    &            \\
+Default sleep period    &       &      & 60           &     & min  &            \\
+System sleep current    &       &      & \textless100 &     & uA   &            \\
+System active current   &       &      &              & 45  &      &           
+\end{tabular}
+\end{table}
+
+
+
+
+
   \subsection{Electrical Systems}
   This field data-logger is designed in stack strategy to reach more compact size and more flexible connectivity. On the bottom is the main controller, middle shield is functionality shield, which has all the functional peripheral circuits on it, including external high precision ADC chip, power regulation circuit and level shifting circuit. Also, it has a 20-pin header pins to connect to the top shield, connection shield. Connection shield bears all the terminal connectors and simple protection circuits.
 
@@ -357,93 +380,56 @@ I2C-bus and other systems} from PHILIPS}
 
 
     \subsection{Overall strucutre}
-    All the components in this robot are written in C++ 11 with STL and Linux components for speed consideration. The operations 
-% \newpage
-\section{Results}
-    \subsection{Design achivement}
-       
+    All the components in this robot are written in C and optimized for power-saving consideration.   \\
+    The following libraries are in use: \\
+    \begin{itemize}
+        \item <avr/sleep.h>
+        \item <avr/power.h>
+        \item <EEPROM.h>
+        \item <SdFat.h>
+        \item <stdio.h>
+        \item <Wire.h>
+        \item <SoftwareSerial.h>
+        \item <Adafruit\_ADS1015.h>
+        \item <DS3231.h>
+        \item <Adafruit\_MCP9808.h>
+    \end{itemize}
+       And no customize library in use, so the firmware is better for general purpose usage.
 
 % \newpage
 \section{Future Work}
+\subsection{Wireless}
+Now the data-logger is in its release 1.0 version, and I am already started working on the 2.0 version, which is data-logger local network that has a coordinator to collect log files everyday them send them to the cloud.
 
 
-
-
-\newpage
-\section{Acknowledgements and References}
-\begin{thebibliography}{9}
-
-\bibitem{ExploringBBB}
-  Derek Molloy,
-  \emph{Exploring Beaglebone},
-  Wiley, Hoboken,
-  1nd edition,
-  2014.
-
-\bibitem{PIDTuning}
-  Sigurd Skogestad,
-  \emph{Probaly the best simple PID tuning rules in the world},
-  Department of Chemical Engineering,
-  Norwegian University of Science and Technology,
-  2001.
-
-\bibitem{Kalman}
-  Greg Welch, Grary Bishop,
-  \emph{An Introduction to the Kalman Filter},
-  Department of Computer Science,
-  University of North Carolina at Chapel Hill,
-  Chapel Hill, NC.
-
-\bibitem{deviceTree}
-  Justin Cooper,
-  \emph{Introduction to the BeagleBone Black Device Tree},
-  Adafruit,
-  https://learn.adafruit.com/introduction-to-the-beaglebone-black-device-tree/overview,
-  2014.
-
-\bibitem{KalmanLib}
-  Kristian Lauszus,
-  \emph{KalmanFilter},
-  TKJ Electronics 2012,
-  https://github.com/TKJElectronics/KalmanFilter,
-  2012.
-
-\bibitem{Blacklib}
-  Yiğit Yüce,
-  \emph{Black Lib},
-  http://blacklib.yigityuce.com/.
-
-\bibitem{hackinWiiCamera}
-  Eric Jacob,
-  \emph{Wii Remote IR Camera Hack with Arduino Interface},
-  http://www.instructables.com/id/Wii-Remote-IR-Camera-Hack/,
-  2010.
-
-\end{thebibliography}
-
-\renewcommand{\abstractname}{Acknowledgements}
-\begin{abstract}
-Special thanks to Bay Area Circuit
-\end{abstract}
-\renewcommand{\abstractname}{Abstract}
 
 \begin{appendices}
-    \section{Mechanical Design}
-        \subsection{Mechanical Design}
-            \label{sw:structure}
-
-            
-
 
     \section{PCB Design}
-        \subsection{Shield}
-           
-        \subsection{Ankle Band}
-            \label{ad:band}
+        \subsection{Functionality board}
+           \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.2\textwidth]{funcSch.png}
+            \caption{\label{fig:func_sch}Functionality board PCB schematic}
+            \end{figure}
+
             \begin{figure}[H]
             \centering
-            \includegraphics[width=0.2\textwidth]{overall.jpg}
-            \caption{\label{fig:band_layout}Unpoured Band PCB Layout}
+            \includegraphics[width=0.2\textwidth]{funcBrd.png}
+            \caption{\label{fig:func_brd}Functionality board PCB Layout}
+            \end{figure}
+
+        \subsection{Connectivity board}
+            \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.2\textwidth]{conSch.png}
+            \caption{\label{fig:con_sch}Connectivity board PCB schematic}
+            \end{figure}
+
+            \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.2\textwidth]{funcBrd.png}
+            \caption{\label{fig:con_brd}Connectivity board PCB Layout}
             \end{figure}
 
     \section{BOM}
@@ -453,9 +439,8 @@ Special thanks to Bay Area Circuit
         \subsection{Applications}
             \label{source:applications}
             \subsubsection{Main on Beaglebone Black}
-                % \lstinputlisting[language=C++]{src/IRAssemblyTest/main.cpp}
+                 \lstinputlisting[language=C++]{src/ver400.ino}
 
-    \section{User Manual}
 \end{appendices}
 
 
