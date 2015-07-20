@@ -1,4 +1,17 @@
 \select@language {english}
-\contentsline {figure}{\numberline {1}{\ignorespaces \emph {Overall view of field Data-logger}}}{2}
-\contentsline {figure}{\numberline {2}{\ignorespaces Seeeduino Stalker v2.3}}{6}
-\contentsline {figure}{\numberline {3}{\ignorespaces Unpoured Band PCB Layout}}{9}
+\contentsline {figure}{\numberline {1}{\ignorespaces \emph {Overall view of field Data-logger}}}{2}{figure.1}
+\contentsline {figure}{\numberline {2}{\ignorespaces Seeeduino Stalker v2.3}}{7}{figure.2}
+\contentsline {figure}{\numberline {3}{\ignorespaces Functionality Board Top view}}{8}{figure.3}
+\contentsline {figure}{\numberline {4}{\ignorespaces Connectivity Board Top view}}{10}{figure.4}
+\contentsline {figure}{\numberline {5}{\ignorespaces Battery and solar panel}}{11}{figure.5}
+\contentsline {figure}{\numberline {6}{\ignorespaces Power Bridge and coupling}}{12}{figure.6}
+\contentsline {figure}{\numberline {8}{\ignorespaces On board power boost circuit}}{12}{figure.8}
+\contentsline {figure}{\numberline {7}{\ignorespaces On board power regulator}}{13}{figure.7}
+\contentsline {figure}{\numberline {9}{\ignorespaces $I^{2}C$ port position on the Controller board}}{14}{figure.9}
+\contentsline {figure}{\numberline {10}{\ignorespaces $I^{2}C$ Level Shift circuit}}{15}{figure.10}
+\contentsline {figure}{\numberline {11}{\ignorespaces ADS1115 chip position on the functionality board}}{16}{figure.11}
+\contentsline {figure}{\numberline {12}{\ignorespaces ADS1115 chip schematic}}{17}{figure.12}
+\contentsline {figure}{\numberline {13}{\ignorespaces Read-Only port position on the board}}{18}{figure.13}
+\contentsline {figure}{\numberline {14}{\ignorespaces Read-Only port schematic}}{19}{figure.14}
+\contentsline {figure}{\numberline {15}{\ignorespaces Water-resistant box}}{20}{figure.15}
+\contentsline {figure}{\numberline {16}{\ignorespaces Unpoured Band PCB Layout}}{23}{figure.16}
