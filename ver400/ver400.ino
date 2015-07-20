@@ -403,7 +403,7 @@ void setup(){
   pinMode(WAKE_UP, INPUT);
   digitalWrite(WAKE_UP,HIGH);
   rtc.begin();
-  rtc.enableInterrupts(EveryHour);
+  rtc.enableInterrupts(EveryMinute);
   //SD card 
   pinMode(SD_CHIP_SELECT,OUTPUT);
   if (!sd.begin(SD_CHIP_SELECT, SPI_HALF_SPEED)) sd.initErrorHalt();
@@ -426,10 +426,10 @@ void loop(){
   update_time(nowTime);
   
 
-  if (nowTime.hour()==12){    //newDay
-    lastTime=nowTime;
+//  if (nowTime.hour()==12){    //newDay
+ //   lastTime=nowTime;
 //    Xbee_send();
-  }
+ // }
 
 
 
@@ -450,6 +450,6 @@ void loop(){
   noteDown_5TE();
 
   
-  //delay(3000);
-  sleepNow(); 
+  delay(3000);
+ // sleepNow(); 
 }  

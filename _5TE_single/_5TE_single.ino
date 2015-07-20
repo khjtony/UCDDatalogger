@@ -37,8 +37,8 @@ void setup()
   pinMode(sel_A,OUTPUT);
   pinMode(sel_B,OUTPUT);
   pinMode(9,INPUT);
-  digitalWrite(sel_A,HIGH);
-  digitalWrite(sel_B,HIGH);
+  digitalWrite(sel_A,LOW);
+  digitalWrite(sel_B,LOW);
   digitalWrite(TE_VCC,LOW);
   // Open serial communications and wait for port to open:
   Serial.begin(9600);

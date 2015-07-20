@@ -1,0 +1,30 @@
+\select@language {english}
+\contentsline {section}{\numberline {1}Overview}{5}
+\contentsline {section}{\numberline {2}Features}{5}
+\contentsline {section}{\numberline {3}Hardware Design}{6}
+\contentsline {subsection}{\numberline {3.1}Electrical Systems}{6}
+\contentsline {subsubsection}{\numberline {3.1.1}Controllers}{6}
+\contentsline {section}{\numberline {4}Software Design}{7}
+\contentsline {subsection}{\numberline {4.1}Overall strucutre}{7}
+\contentsline {section}{\numberline {5}Results}{7}
+\contentsline {subsection}{\numberline {5.1}Design achivement}{7}
+\contentsline {section}{\numberline {6}Future Work}{7}
+\contentsline {section}{\numberline {7}Acknowledgements and References}{8}
+\contentsline {section}{Appendices}{9}
+\contentsline {section}{\numberline {A}Mechanical Design}{9}
+\contentsline {subsection}{\numberline {A.1}Mechanical Design}{9}
+\contentsline {section}{\numberline {B}PCB Design}{9}
+\contentsline {subsection}{\numberline {B.1}Shield}{9}
+\contentsline {subsection}{\numberline {B.2}Ankle Band}{9}
+\contentsline {section}{\numberline {C}BOM}{9}
+\contentsline {section}{\numberline {D}Source code}{9}
+\contentsline {subsection}{\numberline {D.1}Applications}{9}
+\contentsline {subsubsection}{\numberline {D.1.1}Main on Beaglebone Black}{9}
+\contentsline {subsubsection}{\numberline {D.1.2}IMU on Arduino}{12}
+\contentsline {subsubsection}{\numberline {D.1.3}IMU on Beaglebone Black}{19}
+\contentsline {subsection}{\numberline {D.2}Libries}{21}
+\contentsline {subsubsection}{\numberline {D.2.1}Customized Libs}{21}
+\contentsline {subsubsection}{\numberline {D.2.2}IR Camera Driver}{23}
+\contentsline {subsubsection}{\numberline {D.2.3}PID control}{29}
+\contentsline {subsection}{\numberline {D.3}Device tree}{29}
+\contentsline {section}{\numberline {E}User Manual}{31}
