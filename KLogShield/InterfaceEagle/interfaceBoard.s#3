@@ -3095,6 +3095,10 @@ Big oval pads</description>
 <label x="-109.22" y="106.68" size="1.778" layer="95"/>
 </segment>
 <segment>
+<pinref part="T1" gate="G$1" pin="B"/>
+<wire x1="-5.08" y1="167.64" x2="-10.16" y2="167.64" width="0.1524" layer="91"/>
+</segment>
+<segment>
 <pinref part="R2" gate="G$1" pin="1"/>
 <wire x1="-10.16" y1="187.96" x2="-10.16" y2="190.5" width="0.1524" layer="91"/>
 <wire x1="-10.16" y1="190.5" x2="-22.86" y2="190.5" width="0.1524" layer="91"/>
@@ -3240,9 +3244,9 @@ Big oval pads</description>
 <label x="-17.78" y="73.66" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="X1" gate="-6" pin="K"/>
-<wire x1="-93.98" y1="91.44" x2="-109.22" y2="91.44" width="0.1524" layer="91"/>
-<label x="-109.22" y="91.44" size="1.778" layer="95"/>
+<pinref part="X2" gate="-3" pin="K"/>
+<wire x1="-50.8" y1="114.3" x2="-63.5" y2="114.3" width="0.1524" layer="91"/>
+<label x="-63.5" y="114.3" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="GND" class="0">
@@ -3364,9 +3368,9 @@ Big oval pads</description>
 <label x="12.7" y="76.2" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="X2" gate="-3" pin="K"/>
-<wire x1="-50.8" y1="114.3" x2="-63.5" y2="114.3" width="0.1524" layer="91"/>
-<label x="-63.5" y="114.3" size="1.778" layer="95"/>
+<pinref part="X1" gate="-6" pin="K"/>
+<wire x1="-93.98" y1="91.44" x2="-109.22" y2="91.44" width="0.1524" layer="91"/>
+<label x="-109.22" y="91.44" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="M14" class="0">
@@ -3413,11 +3417,7 @@ Big oval pads</description>
 <segment>
 <pinref part="R2" gate="G$1" pin="2"/>
 <pinref part="R1" gate="G$1" pin="1"/>
-<wire x1="-10.16" y1="177.8" x2="-10.16" y2="167.64" width="0.1524" layer="91"/>
-<pinref part="T1" gate="G$1" pin="B"/>
-<wire x1="-10.16" y1="167.64" x2="-10.16" y2="165.1" width="0.1524" layer="91"/>
-<wire x1="-5.08" y1="167.64" x2="-10.16" y2="167.64" width="0.1524" layer="91"/>
-<junction x="-10.16" y="167.64"/>
+<wire x1="-10.16" y1="177.8" x2="-10.16" y2="165.1" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
