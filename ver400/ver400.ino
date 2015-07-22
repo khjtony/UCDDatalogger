@@ -236,6 +236,7 @@ float TE_measure(byte* raw,int option){
 }
 
 int noteDown_5TE_cell(int number){
+  int record_flag=5;
   switch (number){
     case 1:
       digitalWrite(MUX_B,LOW);
@@ -255,11 +256,13 @@ int noteDown_5TE_cell(int number){
       break;
   }
 
-  mySerial.flush();
-  mySerial.listen();
   byte income;
   int i=0;
   byte raw[20];
+  
+  while (record_flag>0){
+  mySerial.flush();
+  mySerial.listen();
   digitalWrite(PWR_BOOST,HIGH);
   delay(200);
   while (mySerial.available()){
@@ -272,14 +275,30 @@ int noteDown_5TE_cell(int number){
       break;
     }    
   }
+  
+  
   digitalWrite(PWR_BOOST,LOW);
-
-
+  if (TE_measure(raw,1)>-5 && TE_measure(raw,1)<5 &&
+      TE_measure(raw,2)>-5 && TE_measure(raw,2)<5 &&
+      TE_measure(raw,3)>0 && TE_measure(raw,3)<100){
+    record_flag=-1;
+  }else{
+    delay(1000);
+    record_flag-=1;
+  }
+  }
+  
+  if(record_flag==-1){
+  
   myFile.print(TE_measure(raw,1));
   myFile.print("-");
   myFile.print(TE_measure(raw,2));
   myFile.print("-");
   myFile.print(TE_measure(raw,3));
+  }else{
+    myFile.print("NotConnected");
+  }
+
   
   return 0;
 }
@@ -378,10 +397,13 @@ void Xbee_send(){
 
 void setup(){
   Serial.begin(57600);
-  //Serial.println("Hello World");
+  Serial.println("Hello World");
+  
   EEPROM_init();
   //system 
   analogReference(INTERNAL); 
+  Wire.begin();
+  attachInterrupt(0,INT0_ISR, LOW); 
   //temperature 
   //moisture 
   pinMode(MUX_A,OUTPUT);
@@ -389,30 +411,30 @@ void setup(){
   pinMode(MUX_B,OUTPUT);
   digitalWrite(MUX_B,LOW);
   pinMode(MUX_Y,INPUT);
-  digitalWrite(MUX_Y,HIGH);
-
   pinMode(MOI_PWR,OUTPUT);
   digitalWrite(MOI_PWR,LOW);
+  mySerial.begin(1200);
   //pressure 
   //power supply 
   pinMode(PWR_BOOST,OUTPUT);
   digitalWrite(PWR_BOOST,LOW);
+
+  //SD card 
+  pinMode(SD_CHIP_SELECT,OUTPUT);
+  sd.begin(SD_CHIP_SELECT, SPI_HALF_SPEED);
+  //xbee
+  pinMode(XBEE_EN,OUTPUT);
+  digitalWrite(XBEE_EN,LOW);
   //RTC 
   pinMode(WAKE_UP, INPUT);
   digitalWrite(WAKE_UP,HIGH);
   rtc.begin();
-  rtc.enableInterrupts(EveryHour);
-  //SD card 
-  pinMode(SD_CHIP_SELECT,OUTPUT);
-  if (!sd.begin(SD_CHIP_SELECT, SPI_HALF_SPEED)) sd.initErrorHalt();
-  //xbee
-  pinMode(XBEE_EN,OUTPUT);
-  digitalWrite(XBEE_EN,LOW);
+  rtc.enableInterrupts(EverySecond);
   
   delay(200);
-  Wire.begin();
-  mySerial.begin(1200);
-  attachInterrupt(0,INT0_ISR, LOW); 
+  
+  
+
 
 }
 
@@ -447,7 +469,8 @@ void loop(){
  // Serial.println("Record 5TE");
   noteDown_5TE();
 
-  
-  //delay(3000);
+ //Serial.println("WakeUP"); 
+  delay(50);
+ // delay(3000);
  sleepNow(); 
 }  

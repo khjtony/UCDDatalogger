@@ -37,7 +37,8 @@ void setup()
   pinMode(sel_A,OUTPUT);
   pinMode(sel_B,OUTPUT);
   pinMode(9,INPUT);
-  digitalWrite(sel_A,LOW);
+  digitalWrite(9,HIGH);
+  digitalWrite(sel_A,HIGH);
   digitalWrite(sel_B,LOW);
   digitalWrite(TE_VCC,LOW);
   // Open serial communications and wait for port to open:
@@ -140,7 +141,7 @@ void loop() // run over and over
 { 
   Serial.print("Now #6:  ");
   TE_Read(&mySerial6);  
-  delay(3000);
+  delay(1000);
 }
   
 void TE_deoverflow(){
@@ -151,41 +152,53 @@ void TE_deoverflow(){
 
 
 void TE_Read(SoftwareSerial* mySerial){
+  byte raw[20];
+   int record_flag=50;
+   while (record_flag>0){
   TE_deoverflow();
   mySerial->listen();
   delay(100);
   byte income;
-  byte raw[20];
+  
   int mos=0;
   int i=0;
   digitalWrite(TE_VCC,HIGH);
   delay(200);
-  while (mySerial->available()){
+   while (mySerial->available()){
     income=mySerial->read();
     raw[i]=income;
-    
     i++;
-    //Serial.print(income);
-   // if (income==0x0A || i==19){
-   //   analogWrite(3,0);
-   //   delay(1000);
-   //   break;
-    //}
-    if (income==0x0A){
-      i=1;
+    if (income==0x0A){ 
+      break;
+    }else if(i==19){
+      break;
+    }    
+  }
+  digitalWrite(TE_VCC,LOW);
+  
+  
+  if (TE_measure(raw,1)>-5 && TE_measure(raw,1)<5 &&
+      TE_measure(raw,2)>-5 && TE_measure(raw,2)<5 &&
+      TE_measure(raw,3)>0 && TE_measure(raw,3)<100){
+    record_flag=0;
+
+  }else{
+    delay(1000);
+    record_flag-=1;
+        Serial.println("Record error");
+  }
+}
+
+
+
        Serial.print(TE_measure(raw,1));
        Serial.print("-");
        Serial.print(TE_measure(raw,2));
        Serial.print("-");
        Serial.print(TE_measure(raw,3));
        Serial.println("");
-       digitalWrite(TE_VCC,LOW);
-       delay(500);
-       return;}
+
     
-    }
-digitalWrite(TE_VCC,LOW);
-       delay(500);
        return;
   }
   
